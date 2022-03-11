@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.marcone.crud2.domain.Post;
 import com.marcone.crud2.domain.Usuario;
 import com.marcone.crud2.dto.UsuarioDTO;
 import com.marcone.crud2.services.ServicoDeUsuario;
@@ -62,5 +63,12 @@ public class RecursoDeUsuarios {
 	public ResponseEntity<Void> deletar(@PathVariable String id){
 		servico.deletar(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping(value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		Usuario obj = servico.findById(id);
+		return ResponseEntity.ok().body(obj.getPosts());
+		
 	}
 }
