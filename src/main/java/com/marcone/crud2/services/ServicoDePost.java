@@ -1,5 +1,6 @@
 package com.marcone.crud2.services;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,11 @@ public class ServicoDePost {
 	}
 	
 	public List<Post> findByTitle(String text){
-		return repositorio.findByTituloContainingIgnoreCase(text);
+		return repositorio.pesquisaTitulo(text);
+	}
+	
+	public List<Post> pesquisaCompleta(String text, Date minDate, Date maxDate){
+		maxDate = new Date(maxDate.getTime()+ 24 * 60 * 60 * 1000);
+		return repositorio.pesquisaCompleta(text, minDate, maxDate);
 	}
 }
