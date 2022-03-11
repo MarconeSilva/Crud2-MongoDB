@@ -1,13 +1,16 @@
 package com.marcone.crud2.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.marcone.crud2.dto.AutorDTO;
+import com.marcone.crud2.dto.ComentarioDTO;
 
 @Document
 public class Post implements Serializable{
@@ -19,6 +22,8 @@ public class Post implements Serializable{
 	private Date data;
 	private String titulo;
 	private String mensagem;
+	
+	private List<ComentarioDTO> comentario = new ArrayList<>();
 	
 	public Post() {
 		
@@ -71,6 +76,14 @@ public class Post implements Serializable{
 
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
+	}	
+
+	public List<ComentarioDTO> getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(List<ComentarioDTO> comentario) {
+		this.comentario = comentario;
 	}
 
 	@Override

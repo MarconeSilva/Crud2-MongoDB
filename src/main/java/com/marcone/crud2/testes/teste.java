@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import com.marcone.crud2.domain.Post;
 import com.marcone.crud2.domain.Usuario;
 import com.marcone.crud2.dto.AutorDTO;
+import com.marcone.crud2.dto.ComentarioDTO;
 import com.marcone.crud2.repository.RepositorioDePost;
 import com.marcone.crud2.repository.RepositorioDeUsuario;
 
@@ -41,6 +42,13 @@ public class teste implements CommandLineRunner{
 		
 		Post post1 = new Post(null, new AutorDTO(nayma), dataFormatada.parse("10/02/2022"), "testando 1" , "Estou aprendendo");
 		Post post2 = new Post(null, new AutorDTO(nayma), dataFormatada.parse("10/02/2022"), "testando 2" , "Mais um Post");
+		
+		ComentarioDTO com1 = new ComentarioDTO("mais um ano", dataFormatada.parse("10/02/2022"), new AutorDTO(luan));
+		ComentarioDTO com2 = new ComentarioDTO("vamos pra cima", dataFormatada.parse("10/02/2022"), new AutorDTO(kaua));
+		ComentarioDTO com3 = new ComentarioDTO("bora simbora", dataFormatada.parse("10/02/2022"), new AutorDTO(luan));
+		
+		post1.getComentario().addAll(Arrays.asList(com1, com2));
+		post2.getComentario().addAll(Arrays.asList(com3));
 		
 		repositorioDePost.saveAll(Arrays.asList(post1, post2));
 		

@@ -1,5 +1,6 @@
 package com.marcone.crud2.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,9 @@ public class ServicoDePost {
 		Optional<Post> obj = repositorio.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
 	
+	}
+	
+	public List<Post> findByTitle(String text){
+		return repositorio.findByTituloContainingIgnoreCase(text);
 	}
 }
